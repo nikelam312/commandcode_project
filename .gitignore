@@ -1,0 +1,20 @@
+# Local / runtime data
+jetso.db
+*.sqlite
+*.sqlite3
+
+# Caches
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# Packaging
+crawler_common.egg-info/
+build/
+dist/
+
+# Tooling / IDE
+.commandcode/
+.vscode/
+.idea/
+.DS_Store
