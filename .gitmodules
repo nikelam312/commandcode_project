@@ -14,3 +14,9 @@
 	path = maphk-restaurants
 	url = git@github.com:nikelam312/maphk-restaurants.git
 	branch = main
+[submodule "apple-watcher"]
+	path = apple-watcher
+	url = git@github.com:nikelam312/apple-watcher.git
+[submodule "trip-com-pipeline"]
+	path = trip-com-pipeline
+	url = git@github.com:nikelam312/trip-com-pipeline.git
