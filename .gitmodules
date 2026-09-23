@@ -20,3 +20,7 @@
 [submodule "trip-com-pipeline"]
 	path = trip-com-pipeline
 	url = git@github.com:nikelam312/trip-com-pipeline.git
+[submodule "nordvpn_proxy"]
+	path = nordvpn_proxy
+	url = git@github.com:nikelam312/nordvpn_proxy.git
+	branch = dev
