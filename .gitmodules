@@ -1,7 +1,7 @@
 [submodule "hk-event-collector"]
 	path = hk-event-collector
 	url = git@github.com:nikelam312/hk-event-collector.git
-	branch = main
+	branch = prd
 [submodule "inventory-migration"]
 	path = inventory-migration
 	url = git@github.com:nikelam312/inventory-migration.git
@@ -9,7 +9,7 @@
 [submodule "jetso-monitor"]
 	path = jetso-monitor
 	url = git@github.com:nikelam312/jetso-monitor.git
-	branch = dev
+	branch = prd
 [submodule "maphk-restaurants"]
 	path = maphk-restaurants
 	url = git@github.com:nikelam312/maphk-restaurants.git
