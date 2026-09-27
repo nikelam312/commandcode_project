@@ -1,11 +1,11 @@
 [submodule "hk-event-collector"]
 	path = hk-event-collector
 	url = git@github.com:nikelam312/hk-event-collector.git
-	branch = main
+	branch = dev
 [submodule "inventory-migration"]
 	path = inventory-migration
 	url = git@github.com:nikelam312/inventory-migration.git
-	branch = main
+	branch = dev
 [submodule "jetso-monitor"]
 	path = jetso-monitor
 	url = git@github.com:nikelam312/jetso-monitor.git
@@ -13,13 +13,15 @@
 [submodule "maphk-restaurants"]
 	path = maphk-restaurants
 	url = git@github.com:nikelam312/maphk-restaurants.git
-	branch = main
+	branch = dev
 [submodule "apple-watcher"]
 	path = apple-watcher
 	url = git@github.com:nikelam312/apple-watcher.git
+	branch = dev
 [submodule "trip-com-pipeline"]
 	path = trip-com-pipeline
 	url = git@github.com:nikelam312/trip-com-pipeline.git
+	branch = dev
 [submodule "nordvpn_proxy"]
 	path = nordvpn_proxy
 	url = git@github.com:nikelam312/nordvpn_proxy.git

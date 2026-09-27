@@ -1,0 +1,13 @@
+[product]
+id = "100414877908"
+url = "https://mitem.jd.hk/product/100414877908.html"
+variant = "iPhone 18 Pro Max|256GB|布根地紅色"
+
+[location]
+region = "HK"
+district = "Wan Chai"
+
+[fetch]
+proxy_url = "http://127.0.0.1:1181"
+timeout_ms = 45000
+wait_ms = 2500
