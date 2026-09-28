@@ -26,3 +26,7 @@
 	path = nordvpn_proxy
 	url = git@github.com:nikelam312/nordvpn_proxy.git
 	branch = dev
+[submodule "snag-tickets"]
+	path = snag-tickets
+	url = git@github.com:nikelam312/snag-tickets.git
+	branch = dev
