@@ -12,6 +12,7 @@ installed editable via the root `pyproject.toml`).
 | `jetso-monitor/` | HK deals/coupons + cheap-flight monitor (urllib throughout, Playwright for Flyday/Threads) |
 | `maphk-restaurants/` | MapHK restaurant collector + Notion mystery-customer matching |
 | `inventory-migration/` | Notion inventory migration tooling |
+| `snag-tickets/` | Semi-automatic ticket monitor (Trip.com as first source); stops before payment |
 
 The recent change wires all outbound HTTP through the NordVPN proxy by default,
 so collection traffic exits via a NordVPN datacenter IP instead of the home IP.
@@ -28,6 +29,7 @@ Windows, WSL, and the server:
 | `JETSO_HOME` | `jetso-monitor/` | `jetso.db`, dev DBs, flight monitor |
 | `MAPHK_HOME` | `maphk-restaurants/` | `restaurants.db` and friends |
 | `INVENTORY_HOME` | `inventory-migration/` | Notion migration logs/backups |
+| `SNAG_HOME` | `snag-tickets/` | `data/` (SQLite + probe) + `state/` (cookies) |
 
 On the server, export the var to the old absolute path (e.g. `JETSO_HOME=/home/ubuntu/jetso-monitor`)
 to preserve the exact production layout. The `flight_deal_monitor.py` shebang
@@ -101,6 +103,28 @@ Everything is default-on but overridable with the same two env vars:
 - `flight_deal_monitor.py` — `jm.configure_proxy()` in `main()`; the two
   Playwright launches (`fetch_flyday_home`, `fetch_threads_profile`) pass
   `proxy=_pw_proxy()`.
+
+### snag-tickets
+
+`snag_tickets/config.py` — a `RouteConfig` resolves **one** egress route at
+startup (`--direct` / `--proxy` / `[fetch] route`), and exposes it twice:
+`RouteConfig.request_proxies` for `requests` and `RouteConfig.browser_proxy`
+for Playwright. The two MUST stay in sync — see the constraint below.
+
+`snag_tickets/apisession.py` — does **not** use `crawler_common.fetch`, which
+is GET-only, sends a `crawler-common/0.1` UA, and treats 403 as a hard failure.
+A ticketing endpoint wants browser-shaped headers and 403/429 surfaced as a
+*decision* (stop / back off) rather than an exception.
+
+`monitor_snag_tickets.py` — thin cron wrapper, prints only on change.
+
+**Route consistency is a hard constraint there.** The bridge rotates the exit
+IP per connection, so polling through it and then submitting the order over the
+home IP presents a session that changes IP mid-order — the signature of an
+automated attack. `snag_tickets` therefore pins a single route for the whole
+run and preflights it before the first request; it defaults to `direct`,
+because a semi-automatic run makes a handful of requests per minute and IP
+reputation matters more than throughput.
 
 ## Disabling / troubleshooting
 
