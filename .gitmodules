@@ -28,5 +28,5 @@
 	branch = dev
 [submodule "snag-tickets"]
 	path = snag-tickets
-	url = git@github.com:nikelam312/snag-tickets.git
+	url = https://github.com/nikelam312/snag-tickets.git
 	branch = dev
