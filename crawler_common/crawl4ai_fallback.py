@@ -113,7 +113,10 @@ def render(url: str, mode: str = "fit", schema: dict | None = None, timeout: flo
         shutil.rmtree(tmpdir, ignore_errors=True)
 
     if not payload.get("ok"):
-        logger.warning("crawl4ai bridge crawl failed for %s: %s", url, payload.get("error"))
+        # crawl4ai errors carry a multi-line traceback and code context; keep the
+        # log line useful instead of dumping ~20 lines per failed page.
+        err = " ".join(str(payload.get("error") or "").split())
+        logger.warning("crawl4ai bridge crawl failed for %s: %s", url, err[:300])
     return payload
 
 
